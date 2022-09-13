@@ -1,19 +1,21 @@
-const { randomizer } = require('./randomizer')
+import randomizer from './randomizer'
+import Pair from './Pair'
 const { useState } = require('react');
-const Pair = require('./Pair')
 
 function App() {
 
   const [listOfStudents, setListOfStudents] = useState(['Bob', 'Charles', 'Jeff', 'Mag', 'Rob', 'Michael', 'George'])
-console.log(randomizer.randomize(listOfStudents))
+
+  const random = randomizer.randomize(listOfStudents)
+
   return (
-        <div>
-          {randomizer.randomize(listOfStudents).map((elem) => {
+        <ul>
+          {random.map((elem, index) => {       
             return (
-              <Pair elem={elem} />
+              <Pair elem={elem} key={index} id={index} />
              )
           })}
-        </div>
+        </ul>
   );
 }
 
